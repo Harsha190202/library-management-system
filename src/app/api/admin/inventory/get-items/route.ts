@@ -1,13 +1,18 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextResponse } from "next/server";
 import prisma from "@/Lib/prisma";
 
-export default async function GET(req: NextApiRequest, res: NextApiResponse) {
+export async function POST(req: Request) {
   try {
-    const { name, categoryId, typeId } = req.query;
+    const { name, categoryId, typeId } = await req.json();
 
     const filters: any = {};
 
-    if (name) filters.name = { contains: String(name) };
+    if (name) {
+      filters.name = {
+        contains: name,
+        mode: "insensitive",
+      };
+    }
     if (categoryId) filters.categoryId = Number(categoryId);
     if (typeId) filters.typeId = Number(typeId);
 
@@ -19,9 +24,9 @@ export default async function GET(req: NextApiRequest, res: NextApiResponse) {
       },
     });
 
-    res.status(200).json(items);
+    return NextResponse.json(items);
   } catch (error) {
     console.error("Error fetching items:", error);
-    res.status(500).json({ error: "Failed to fetch items" });
+    return NextResponse.json({ error: "Failed to fetch items" }, { status: 500 });
   }
 }

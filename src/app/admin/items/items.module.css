@@ -1,0 +1,34 @@
+.form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  border: 1px solid black;
+  height: 60px;
+  margin: 30px;
+  background-color: #232f3e;
+  border-radius: 10px;
+}
+
+.form input {
+  height: 40px;
+  width: 300px;
+  border: 1px solid black;
+  padding: 10px;
+  outline: none;
+}
+
+.form select {
+  height: 40px;
+  width: 300px;
+  border: 1px solid black;
+  padding: 5px;
+}
+
+.form button {
+  color: white;
+  width: 100px;
+  height: 40px;
+  font-size: large;
+  border-radius: 5px;
+}

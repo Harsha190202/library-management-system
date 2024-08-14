@@ -4,14 +4,14 @@ import { useEffect, useState } from "react";
 import styles from "../item-insert/insert.module.css";
 
 export default function Iteminsert() {
-  const [categories, setCategories] = useState<{ id: number; name: string }[]>([]);
-  const [types, setTypes] = useState<{ id: number; itemtype: string }[]>([]);
+  const [categories, setCategories] = useState([]);
+  const [types, setTypes] = useState([]);
   const [formData, setFormData] = useState<{
     title: string;
     author: string;
     quantity: string;
-    category: string | null;
-    type: string | null;
+    category: number | null;
+    type: number | null;
     image: File | null;
   }>({
     title: "",
@@ -61,11 +61,9 @@ export default function Iteminsert() {
 
   const handleRadioChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    const selectedItem = e.target.dataset.item;
-
     setFormData({
       ...formData,
-      [name]: selectedItem || null,
+      [name]: Number(value),
     });
   };
 
@@ -106,8 +104,8 @@ export default function Iteminsert() {
       submissionData.append("title", formData.title);
       submissionData.append("author", formData.author);
       submissionData.append("quantity", formData.quantity);
-      submissionData.append("category", formData.category || "");
-      submissionData.append("type", formData.type || "");
+      submissionData.append("category", String(formData.category));
+      submissionData.append("type", String(formData.type));
       if (formData.image) {
         submissionData.append("image", formData.image, formData.image.name);
       }
@@ -177,9 +175,9 @@ export default function Iteminsert() {
         <fieldset className={styles.fieldset}>
           <legend>Category</legend>
           <div className={styles.flexcolumn}>
-            {categories.map((category) => (
+            {categories.map((category: { id: number; name: string }) => (
               <label key={category.id} className={styles.labelType}>
-                <input type="radio" name="category" data-item={category.name} value={category.id} onChange={handleRadioChange} className={styles.radioType} />
+                <input type="radio" name="category" value={category.id} onChange={handleRadioChange} className={styles.radioType} />
                 {category.name}
               </label>
             ))}
@@ -190,9 +188,9 @@ export default function Iteminsert() {
         <fieldset className={styles.fieldset}>
           <legend>Type</legend>
           <div className={styles.flexcolumn}>
-            {types.map((type) => (
+            {types.map((type: { id: number; itemtype: string }) => (
               <label key={type.id} className={styles.labelType}>
-                <input type="radio" name="type" data-item={type.itemtype} value={type.id} onChange={handleRadioChange} className={styles.radioType} />
+                <input type="radio" name="type" value={type.id} onChange={handleRadioChange} className={styles.radioType} />
                 {type.itemtype}
               </label>
             ))}
