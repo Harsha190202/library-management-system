@@ -1,0 +1,112 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  height: 100vh;
+  width: 100%;
+  background-color: #fee7cd;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+.image {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+}
+.form {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 10px;
+  width: 50%;
+}
+
+.form h1 {
+  font-size: large;
+}
+
+.form div {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  width: 60%;
+}
+
+.tabs {
+  font-size: large;
+}
+
+.tabs input {
+  width: 340px;
+  height: 40px;
+  padding: 3px;
+  border-radius: 10px;
+}
+
+.button {
+  background-color: black;
+  color: white;
+  font-weight: 500;
+  font-size: large;
+  width: 340px;
+  height: 40px;
+  text-align: center;
+  margin-top: 15px;
+  border-radius: 10px;
+}
+
+@media (max-width: 500px) {
+  .container {
+    padding-top: 40px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .form {
+    width: 90%;
+    max-width: none;
+    align-items: center;
+    margin: 0 auto;
+  }
+
+  .tabs input {
+    width: 100%;
+  }
+
+  .form button {
+    width: 100%;
+  }
+}
+
+@media (min-width: 501px) and (max-width: 767px) {
+  .container {
+    padding-top: 40px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .form {
+    width: 90%;
+    max-width: none;
+    align-items: center;
+    margin: 0 auto;
+  }
+
+  .tabs input {
+    width: 100%;
+  }
+
+  .form button {
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+}
+
+@media (min-width: 992px) {
+}
