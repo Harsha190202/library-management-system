@@ -47,22 +47,4 @@
   align-items: center;
   flex-direction: column;
   padding: 5px;
-  border: 0.5px solid blanchedalmond;
-}
-
-.itembuttons {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-
-  width: 200px;
-  padding: 5px 20px;
-}
-
-.itembuttons button {
-  background-color: #00246b;
-  width: 100px;
-  height: 30px;
-  color: white;
-  border-radius: 5px;
 }

@@ -31,3 +31,14 @@ media queries :
 
 @media (min-width: 992px) {
 }
+
+store :
+
+blue pallete
+#9DB0EC - sky blue
+#00246B - dark blue
+#CADCFC - baby blue
+
+grey palette
+
+#1995AD, #A1D6E2, #F1F1F2

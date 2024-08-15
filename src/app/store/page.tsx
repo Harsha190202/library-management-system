@@ -1,10 +1,8 @@
 "use client";
 import { useState, useEffect } from "react";
 import styles from "./items.module.css";
-import { useRouter } from "next/navigation";
 
 export default function Items() {
-  const router = useRouter();
   const [data, setData] = useState([]);
   const [categories, setCategories] = useState<{ [key: number]: string }>({});
   const [types, setTypes] = useState<{ [key: number]: string }>({});
@@ -44,25 +42,6 @@ export default function Items() {
       setData(items);
     } catch (error) {
       console.error("Error fetching items:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleDelete = async (id: number) => {
-    if (!confirm("Are you sure you want to delete this item?")) return;
-    setLoading(true);
-    try {
-      const res = await fetch(`/api/admin/inventory/delete-item/${id}`, {
-        method: "DELETE",
-      });
-      if (!res.ok) {
-        throw new Error("Failed to delete item.");
-      }
-
-      setData((prevData) => prevData.filter((item: { id: number; name: string; author: string | null; image: string; rating: number; typeId: number; categoryId: number; quantity: number; numberOfRatings: number }) => item.id !== id));
-    } catch (error) {
-      console.error("Error deleting item:", error);
     } finally {
       setLoading(false);
     }
@@ -131,12 +110,10 @@ export default function Items() {
               <div key={item.id} className={styles.item}>
                 <h2>{item.name}</h2>
                 <img src={item.image} alt={item.name} style={{ width: "200px", height: "250px" }} />
+                {item.author && <p>Author: {item.author}</p>}
                 <p>Category: {categories[item.categoryId] || "Unknown"}</p>
                 <p>Type: {types[item.typeId] || "Unknown"}</p>
                 {item.numberOfRatings > 0 && <p> Rating: {item.rating} </p>}
-                <div className={styles.itembuttons}>
-                  <button onClick={() => handleDelete(item.id)}>DELETE</button>
-                </div>
               </div>
             ))
           : !loading && <p>No items available</p>}
