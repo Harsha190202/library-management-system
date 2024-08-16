@@ -9,12 +9,13 @@ export default function Items() {
   const [categories, setCategories] = useState<{ [key: number]: string }>({});
   const [types, setTypes] = useState<{ [key: number]: string }>({});
   const [selectedid, setSelectedid] = useState<number>(0);
+  const [username, setUsername] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
   const [filters, setFilters] = useState({
     name: "",
     categoryId: "",
     typeId: "",
   });
-  const [loading, setLoading] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -38,7 +39,7 @@ export default function Items() {
       });
 
       if (!res.ok) {
-        throw new Error("response was not ok.");
+        throw new Error("Response was not ok.");
       }
 
       const items = await res.json();
@@ -50,27 +51,30 @@ export default function Items() {
     }
   };
 
-  const handleDelete = async (id: number) => {
-    if (!confirm("Are you sure you want to delete this item?")) return;
+  const handlePlaceOrder = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     setLoading(true);
+
     try {
-      const res = await fetch(`/api/admin/inventory/delete-item/${id}`, {
-        method: "DELETE",
+      const res = await fetch("http://localhost:3000/api/admin/insert-order", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, selectedid }),
       });
+
       if (!res.ok) {
-        throw new Error("Failed to delete item.");
+        throw new Error("Failed to place order.");
       }
 
-      setData((prevData) => prevData.filter((item: { id: number; name: string; author: string | null; image: string; rating: number; typeId: number; categoryId: number; quantity: number; numberOfRatings: number }) => item.id !== id));
+      setUsername("");
+      setSelectedid(0);
     } catch (error) {
-      console.error("Error deleting item:", error);
+      console.error("Error placing order:", error);
     } finally {
       setLoading(false);
     }
-  };
-
-  const handleEdit = (id: number) => {
-    router.push(`/admin/item-edit/${id}`);
   };
 
   useEffect(() => {
@@ -105,12 +109,14 @@ export default function Items() {
 
   return (
     <section className={styles.section}>
-      <section className={styles.orderform}>
-        <h1>Select one book from below to add to rent it :</h1>
-        <input type="text" placeholder="Enter username " />
-        <h3>SELECTED BOOK ID : {selectedid}</h3>
-        <button>Place Order</button>
-      </section>
+      <form className={styles.orderform} onSubmit={handlePlaceOrder}>
+        <h1>Select one book from below to rent it:</h1>
+        <input type="text" placeholder="Enter username" value={username} onChange={(e) => setUsername(e.target.value)} />
+        <h3>SELECTED BOOK ID: {selectedid}</h3>
+        <button className={styles.button} disabled={loading} type="submit">
+          {loading ? "Loading..." : "Place Order"}
+        </button>
+      </form>
       <form onSubmit={handleSubmit} className={styles.form}>
         <input type="text" name="name" placeholder="Book Name" value={filters.name} onChange={handleChange} />
 
@@ -145,10 +151,6 @@ export default function Items() {
                 <p>Category: {categories[item.categoryId] || "Unknown"}</p>
                 <p>Type: {types[item.typeId] || "Unknown"}</p>
                 {item.numberOfRatings > 0 && <p> Rating: {item.rating} </p>}
-                <div className={`${styles.itembuttons} ${selectedid === item.id ? styles.selecteditembuttons : ""}`}>
-                  <button onClick={() => handleEdit(item.id)}>EDIT</button>
-                  <button onClick={() => handleDelete(item.id)}>DELETE</button>
-                </div>
               </div>
             ))
           : !loading && <p>No items available</p>}

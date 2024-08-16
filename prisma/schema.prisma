@@ -19,6 +19,8 @@ model User {
   email    String @unique
   password String
   role     String @default("user")
+
+  orders Order[]
 }
 
 model Item {
@@ -33,6 +35,8 @@ model Item {
   image           String
   rating          Float    @default(0)
   numberOfRatings Int      @default(0)
+
+  orders Order[]
 }
 
 model Category {
@@ -45,4 +49,20 @@ model Type {
   id       Int    @id @default(autoincrement())
   itemtype String @unique
   items    Item[]
+}
+
+model Order {
+  id          Int      @id @default(autoincrement())
+  userid      Int
+  itemid      Int
+  duedate     DateTime
+  pending     Boolean  @default(true)
+  request     Boolean  @default(false)
+  requestTime Int
+
+  user User @relation(fields: [userid], references: [id])
+  item Item @relation(fields: [itemid], references: [id])
+
+  @@index([userid])
+  @@index([itemid])
 }
