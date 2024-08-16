@@ -58,7 +58,7 @@ model Order {
   duedate     DateTime
   pending     Boolean  @default(true)
   request     Boolean  @default(false)
-  requestTime Int
+  requestTime Int      @default(0)
 
   user User @relation(fields: [userid], references: [id])
   item Item @relation(fields: [itemid], references: [id])
