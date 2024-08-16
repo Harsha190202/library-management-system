@@ -56,7 +56,7 @@ export default function Home() {
       </section>
       <section className="lowest flex">
         <div className="lowest-left">
-          <h2>So why wait now , go out to our near by library and grab a book </h2>
+          <h2>So why wait now , go out to your near by library and grab a book </h2>
           <h5>Create an account before you borrow</h5>
         </div>
         <Link className="lowest-Link" href="/sign-up">

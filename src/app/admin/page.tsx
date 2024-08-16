@@ -11,7 +11,7 @@ export default function AdminPage() {
         <Link href="/admin/items">Check Store and Edit an item from store</Link>
       </div>
       <div>
-        <Link href="/admin/item-away">Check Pending Order</Link>
+        <Link href="/admin/add-order">Check Orders</Link>
       </div>
       <div>
         <Link href="/admin/types-edit">Create a new item type or edit existing</Link>

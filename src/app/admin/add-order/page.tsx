@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import styles from "./items.module.css";
+import styles from "./order.module.css";
 import { useRouter } from "next/navigation";
 
 export default function Items() {
@@ -8,6 +8,7 @@ export default function Items() {
   const [data, setData] = useState([]);
   const [categories, setCategories] = useState<{ [key: number]: string }>({});
   const [types, setTypes] = useState<{ [key: number]: string }>({});
+  const [selectedid, setSelectedid] = useState<number>(0);
   const [filters, setFilters] = useState({
     name: "",
     categoryId: "",
@@ -104,6 +105,12 @@ export default function Items() {
 
   return (
     <section className={styles.section}>
+      <section className={styles.orderform}>
+        <h1>Select one book from below to add to rent it :</h1>
+        <input type="text" placeholder="Enter username " />
+        <h3>SELECTED BOOK ID : {selectedid}</h3>
+        <button>Place Order</button>
+      </section>
       <form onSubmit={handleSubmit} className={styles.form}>
         <input type="text" name="name" placeholder="Book Name" value={filters.name} onChange={handleChange} />
 
@@ -132,13 +139,13 @@ export default function Items() {
       <section className={styles.grid}>
         {data.length > 0
           ? data.map((item: { id: number; name: string; author: string | null; image: string; rating: number; typeId: number; categoryId: number; quantity: number; numberOfRatings: number }) => (
-              <div key={item.id} className={styles.item}>
+              <div key={item.id} className={`${styles.item} ${selectedid === item.id ? styles.selecteditem : ""}`} onClick={() => setSelectedid(item.id)}>
                 <h2>{item.name}</h2>
                 <img src={item.image} alt={item.name} style={{ width: "200px", height: "250px" }} />
                 <p>Category: {categories[item.categoryId] || "Unknown"}</p>
                 <p>Type: {types[item.typeId] || "Unknown"}</p>
                 {item.numberOfRatings > 0 && <p> Rating: {item.rating} </p>}
-                <div className={styles.itembuttons}>
+                <div className={`${styles.itembuttons} ${selectedid === item.id ? styles.selecteditembuttons : ""}`}>
                   <button onClick={() => handleEdit(item.id)}>EDIT</button>
                   <button onClick={() => handleDelete(item.id)}>DELETE</button>
                 </div>

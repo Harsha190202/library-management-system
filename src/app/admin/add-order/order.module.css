@@ -66,3 +66,47 @@
   color: white;
   border-radius: 5px;
 }
+
+.item {
+  padding: 10px;
+  margin: 5px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.selecteditem {
+  background-color: black;
+  color: white;
+  border-color: black;
+}
+
+.orderform {
+  display: flex;
+  flex-direction: row;
+  height: 100px;
+  gap: 30px;
+  align-items: center;
+}
+
+.orderform input {
+  width: 200px;
+  height: 35px;
+  padding: 5px;
+}
+
+.orderform button {
+  background-color: black;
+  color: white;
+  padding: 10px;
+  font-weight: 500;
+  font-size: large;
+  border-radius: 10px;
+}
+
+.selecteditembuttons button {
+  background-color: white;
+  color: black;
+  font-weight: 600;
+}
