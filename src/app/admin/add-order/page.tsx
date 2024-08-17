@@ -127,7 +127,7 @@ export default function Items() {
         <input type="text" placeholder="Enter username" value={username} onChange={(e) => setUsername(e.target.value)} />
         <h3>SELECTED BOOK ID: {selectedid}</h3>
         <button className={styles.button} disabled={loading} type="submit">
-          {loading ? "Loading..." : "Place Order"}
+          {loading ? "Page Load..." : "Place Order"}
         </button>
       </form>
 

@@ -20,7 +20,7 @@ export default function AdminPage() {
         <Link href="/admin/category-edit">Create new category or edit existing</Link>
       </div>
       <div>
-        <Link href="/admin/extend-item-away">Process Extend Orders </Link>
+        <Link href="/admin/orders">Check User Orders </Link>
       </div>
     </section>
   );
