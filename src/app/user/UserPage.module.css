@@ -1,0 +1,45 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.heading {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.subheading {
+  font-size: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.loading {
+  font-size: 1.2rem;
+  color: #007bff;
+}
+
+.orderList {
+  list-style-type: none;
+  padding: 0;
+}
+
+.orderItem {
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+}
+
+.orderItem p {
+  margin: 0.5rem 0;
+}
+
+.pendingbutton {
+  background-color: red;
+  color: white;
+  padding: 7px;
+  font-size: larger;
+  border-radius: 5px;
+}

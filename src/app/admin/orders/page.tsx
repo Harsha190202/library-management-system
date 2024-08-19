@@ -84,12 +84,23 @@ export default function Order() {
             <p>Status: {order.pending ? "Pending" : "Completed"}</p>
           </div>
 
-          <Link href={`/orders/manage/${order.id}`} className={styles.orderLink}>
-            Check Extend Request
-          </Link>
-          <button className={styles.orderButton} onClick={() => handleReceived(order.id)} disabled={!order.pending}>
-            Item Received
-          </button>
+          {order.pending == true ? (
+            <Link href={`orders/manage/${order.id}`} className={styles.orderLink}>
+              Check Extend Request
+            </Link>
+          ) : (
+            <p className={styles.orderLink}> Order Completed </p>
+          )}
+
+          {order.pending == true ? (
+            <button className={styles.orderButton} onClick={() => handleReceived(order.id)} disabled={!order.pending}>
+              Mark Item Received
+            </button>
+          ) : (
+            <button className={styles.orderButton} onClick={() => handleReceived(order.id)} disabled={!order.pending}>
+              This Item is Received
+            </button>
+          )}
         </div>
       ))}
     </section>

@@ -1,0 +1,44 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.heading {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.loading {
+  font-size: 1.2rem;
+  color: #007bff;
+}
+
+.orderList {
+  list-style-type: none;
+  padding: 0;
+}
+
+.orderItem {
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+}
+
+.orderItem p {
+  margin: 0.5rem 0;
+}
+
+.orderLink {
+  text-decoration: none;
+  font-size: large;
+  color: white;
+  background-color: black;
+  padding: 5px;
+}
+
+.orderLink:hover {
+  text-decoration: underline;
+}
