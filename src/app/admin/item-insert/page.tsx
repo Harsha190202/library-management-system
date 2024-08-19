@@ -40,12 +40,12 @@ export default function Iteminsert() {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/admin/get-categories")
+    fetch("/api/admin/get-categories")
       .then((response) => response.json())
       .then((data) => setCategories(data))
       .catch((error) => console.error("Error fetching categories:", error));
 
-    fetch("http://localhost:3000/api/admin/get-types")
+    fetch("/api/admin/get-types")
       .then((response) => response.json())
       .then((data) => setTypes(data))
       .catch((error) => console.error("Error fetching types:", error));

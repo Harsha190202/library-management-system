@@ -15,7 +15,7 @@ export default function Types() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("http://localhost:3000/api/admin/get-categories");
+        const res = await fetch("/api/admin/get-categories");
         const result: Category[] = await res.json();
         setData(result);
       } catch (error) {
@@ -29,7 +29,7 @@ export default function Types() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const res = await fetch("http://localhost:3000/api/admin/add-category", {
+      const res = await fetch("/api/admin/add-category", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -47,7 +47,7 @@ export default function Types() {
   const handleDelete = async (e: React.MouseEvent<HTMLButtonElement>, id: number) => {
     e.preventDefault();
     try {
-      const res = await fetch(`http://localhost:3000/api/admin/delete-category`, {
+      const res = await fetch(`/api/admin/delete-category`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
