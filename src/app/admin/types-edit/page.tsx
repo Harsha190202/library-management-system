@@ -15,7 +15,7 @@ export default function Types() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("http://localhost:3000/api/admin/get-types");
+        const res = await fetch("/api/admin/get-types");
         const result: Item[] = await res.json();
         setData(result);
       } catch (error) {
@@ -29,7 +29,7 @@ export default function Types() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const res = await fetch("http://localhost:3000/api/admin/add-type", {
+      const res = await fetch("/api/admin/add-type", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -47,7 +47,7 @@ export default function Types() {
   const handleDelete = async (e: React.MouseEvent<HTMLButtonElement>, id: number) => {
     e.preventDefault();
     try {
-      const res = await fetch(`http://localhost:3000/api/admin/delete-type`, {
+      const res = await fetch(`/api/admin/delete-type`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

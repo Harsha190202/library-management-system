@@ -58,7 +58,7 @@ export default function Items() {
     setLoading(true);
 
     try {
-      const res = await fetch("http://localhost:3000/api/admin/insert-order", {
+      const res = await fetch("/api/admin/insert-order", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
