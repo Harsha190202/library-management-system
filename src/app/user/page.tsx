@@ -40,7 +40,7 @@ export default function UserPage() {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.heading}>{userData.username}'s Orders</h1>
+      <h1 className={styles.heading}>{userData.username}&apos;s Orders</h1>
       <p>Email: {userData.email}</p>
 
       <h2 className={styles.subheading}>Order History</h2>
